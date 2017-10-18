@@ -1,0 +1,16 @@
+.calculator {
+  background-color: yellow;
+  width: 150px;
+  height: auto;
+}
+
+.display {
+  background-color: grey;
+  width: 100px;
+}
+
+.keys {
+  float: left;
+  position: relative;
+  top: 0;
+}
