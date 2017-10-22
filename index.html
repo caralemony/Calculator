@@ -1,34 +1,40 @@
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="calculator.css">
-  <script type="text/Javascript" src="calculator.js" ></script>
-</head>
+  <head>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <script type="text/Javascript" src="calculator.js" ></script>
+  </head>
+
 <body>
 
-<div class="calculator">
-  <div id="display">0</div>
+  <div class="calculator">
+    <div id="screen">
+      <div id="display">0</div>
+      <div id="workingSum"></div>
+    </div>
 
 
 
-  <div class="keys">
-    <input type="button" onclick="addInput(this)" value="7">
-    <input type="button" onclick="addInput(this)" value="8">
-    <input type="button" onclick="addInput(this)" value="9">
-    <input type="button" onclick="addInput(this)" value="+">
-    <input type="button" onclick="addInput(this)" value="4">
-    <input type="button" onclick="addInput(this)" value="5">
-    <input type="button" onclick="addInput(this)" value="6">
-    <input type="button" onclick="addInput(this)" value="-">
-    <input type="button" onclick="addInput(this)" value="1">
-    <input type="button" onclick="addInput(this)" value="2">
-    <input type="button" onclick="addInput(this)" value="3">
-    <input type="button" onclick="addInput(this)" value="0">
-    <input type="button" onclick="addInput(this)" value=".">
-    <input type="button" onclick="clearEntries()" value="C">
-    <input type="button" onclick="addInput(this)" value="*">
-    <input type="button" onclick="getTotal()" value="=">
+      <input type="button" class="bigButton"  onclick="clearAllEntries()" value="C">
+      <input type="button" class="bigButton"  onclick="clearLastEntry()" value="CE">
+      <input type="button" class="button" onclick="addInput(this)" value="7">
+      <input type="button" class="button"  onclick="addInput(this)" value="8">
+      <input type="button" class="button"  onclick="addInput(this)" value="9">
+      <input type="button" class="button"  onclick="addInput(this)" value="+">
+      <input type="button" class="button"  onclick="addInput(this)" value="4">
+      <input type="button" class="button"  onclick="addInput(this)" value="5">
+      <input type="button" class="button"  onclick="addInput(this)" value="6">
+      <input type="button" class="button"  onclick="addInput(this)" value="-">
+      <input type="button" class="button"  onclick="addInput(this)" value="1">
+      <input type="button" class="button"  onclick="addInput(this)" value="2">
+      <input type="button" class="button"  onclick="addInput(this)" value="3">
+      <input type="button" class="button"  onclick="addInput(this)" value="*">
+      <input type="button" class="button"  onclick="addInput(this)" value="0">
+      <input type="button" class="button"  onclick="addInput(this)" value=".">
+      <input type="button" class="button" class="button"  onclick="getTotal(this)" value="=">
+      <input type="button" class="button"  onclick="addInput(this)" value="/">
 
-</div>
+    </div>
 </div>
 
 <script>
@@ -37,26 +43,33 @@ var entries = [];
 var total = "";
 
 function addInput(button) {
-      document.getElementById("display").innerHTML += button.value;
-      entries.push(button.value);
-
-      // need to show all entered numbers on screen before operator clicked
+  document.getElementById("display").innerHTML = button.value;
+  document.getElementById("workingSum").innerHTML += button.value;
+  entries.push(button.value);
       }
 
-function getTotal() {
- total = eval(entries.join(""));
-  document.getElementById("display").innerHTML = total;
 
-  // need to add step to clear entries before equals was clicked
-  }
 
-function clearEntries() {
-  entries = 0;
+function clearAllEntries() {
+  entries = [];
   document.getElementById("display").innerHTML = 0;
+  document.getElementById("workingSum").innerHTML = '';
 
 }
 
-      </script>
+function clearLastEntry() {
+  entries = entries.slice(0, entries.length-1);
+  document.getElementById("display").innerHTML = entries.join("");
+}
+
+function getTotal() {
+ total = eval(entries.join(""));
+ document.getElementById("display").innerHTML = total;
+ entries = [];
+   //need to add step to clear entries before equals was clicked
+  }
+
+</script>
 
  </body>
 
